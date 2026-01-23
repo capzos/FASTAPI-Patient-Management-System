@@ -60,23 +60,26 @@ def save_data(data):
         json.dump(data, f)
 
 
+# Homepage endpoint
 @app.get('/')
-def hello():
-    return {"message": "Patients Management System: FastAPI Application!"}
+def homepage():
+    return {"message": "Patients Management System: FastAPI Application! \nYou can manage patient records here. \n Go to /docs for API documentation."}
 
 
+# About endpoint
 @app.get('/about')
 def about():
     return {"message": "Fully functional FastAPI application for managing patient records."}
 
 
+# View all patients
 @app.get('/viewpatients')
 def view_patients():
     data = load_data()
     return data
 
 
-
+# View a specific patient by ID
 @app.get('/viewpatient/{patient_id}')
 def view_patient(patient_id: str = Path(..., description = 'Enter the ID of the Patient(DB)', Example = 'P001')):
     data = load_data()
@@ -89,6 +92,7 @@ def view_patient(patient_id: str = Path(..., description = 'Enter the ID of the 
         
 
 
+# sort the patients on the basis of height, weight or bmi 
 @app.get('/sort')
 def sort_patients(sort_by: str = Query(..., description='Sort on the basis of height, weight or bmi'), order: str = Query('asc', description='sort in asc or desc order')):
 
@@ -109,6 +113,7 @@ def sort_patients(sort_by: str = Query(..., description='Sort on the basis of he
 
 
 
+# Create a new patient record
 @app.post('/createpatient')
 def create_patient(patient: Patient):
     
@@ -167,6 +172,7 @@ def update_patient(patient_id: str, patient_update: PatientUpdate):
 
 
 
+# Delete a patient record
 @app.delete('/deletepatient/{patient_id}')
 def delete_patient(patient_id: str):
 
@@ -182,12 +188,5 @@ def delete_patient(patient_id: str):
     save_data(data)
 
     return JSONResponse(status_code=200, content={'message': 'Patient deleted successfully!'})
-
-
-
-
-
-
-
 
 
