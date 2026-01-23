@@ -60,7 +60,7 @@ A fully functional **FastAPI-based REST API** for managing patient records, incl
 
 ### 1️⃣ Clone the repository
 ```bash
-git clone https://github.com/your-username/patient-management-fastapi.git
+git clone https://github.com/capzos/FASTAPI-Patient-Management-System
 cd patient-management-fastapi
 ```
 
@@ -87,5 +87,6 @@ uvicorn app.main:app --reload
 ## API Documentation
 
 Swagger UI → http://127.0.0.1:8000/docs
+
 
 ReDoc → http://127.0.0.1:8000/redoc
